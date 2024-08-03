@@ -27,8 +27,8 @@ def main(config):
 
 if __name__ == '__main__':
 
-    vgg_path = '/home/liuj/code/Messal/weights/vgg16_20M.pth'
-    resnet_path = '/home/liuj/code/Messal/weights/resnet50_caffe.pth'
+    vgg_path = '/home/ridley/git_repos/EGNet/epoch_vgg.pth'
+    resnet_path = '/home/ridley/git_repos/EGNet/epoch_resnet.pth'
 
     parser = argparse.ArgumentParser()
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     parser.add_argument('--epoch', type=int, default=30) # 12, now x3
     parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--test_batch_size', type=int, default=1)
-    parser.add_argument('--num_thread', type=int, default=4)
+    parser.add_argument('--num_thread', type=int, default=8)
     parser.add_argument('--load_bone', type=str, default='')
     # parser.add_argument('--load_branch', type=str, default='')
     parser.add_argument('--save_fold', type=str, default='./EGNet')
@@ -56,10 +56,10 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, default='./epoch_resnet.pth')
     parser.add_argument('--test_fold', type=str, default='./results/test')
     parser.add_argument('--test_mode', type=int, default=1)
-    parser.add_argument('--sal_mode', type=str, default='t')
+    parser.add_argument('--sal_mode', type=str, default='c')
 
     # Misc
-    parser.add_argument('--mode', type=str, default='train', choices=['train', 'test'])
+    parser.add_argument('--mode', type=str, default='test', choices=['train', 'test'])
     parser.add_argument('--visdom', type=bool, default=False)
     
     config = parser.parse_args()

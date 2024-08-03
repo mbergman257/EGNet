@@ -83,6 +83,10 @@ class ImageDataTest(data.Dataset):
                 self.image_root = '/home/liuj/dataset/DUTS/DUTS-TE/DUTS-TE-Image/'
                 self.image_source = '/home/liuj/dataset/DUTS/DUTS-TE/test.lst'
                 self.test_fold = '/media/ubuntu/disk/Result/saliency/DUTS/'
+            elif sal_mode == 'c':
+                self.image_root = '/home/ridley/git_repos/yolov8/datasets/coco/images/train2017'
+                self.image_source = '/home/ridley/git_repos/EGNet/coco_train2017.lst'
+                self.test_fold = '/home/ridley/git_repos/yolov8/datasets/coco/sal/train2017'
         elif test_mode == 2:
 
             self.image_root = '/home/liuj/dataset/SK-LARGE/images/test/'

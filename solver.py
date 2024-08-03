@@ -18,6 +18,7 @@ import PIL.Image
 import scipy.io
 import os
 import logging
+from tqdm import tqdm
 EPSILON = 1e-8
 p = OrderedDict()
 
@@ -106,29 +107,30 @@ class Solver(object):
 
         if not os.path.exists(os.path.join(self.save_fold, name_t)):             
             os.mkdir(os.path.join(self.save_fold, name_t))
-        for i, data_batch in enumerate(self.test_loader):
+        for i, data_batch in tqdm(enumerate(self.test_loader), total=len(self.test_loader)):
             self.config.test_fold = self.save_fold
-            print(self.config.test_fold)
-            images_, name, im_size = data_batch['image'], data_batch['name'][0], np.asarray(data_batch['size'])
+            # print(self.config.test_fold)
+            alpha = [i.item() for i in data_batch['size']]
+            images_, name, im_size = data_batch['image'], data_batch['name'][0], np.asarray(alpha)
             
             with torch.no_grad():
                 
                 images = Variable(images_)
                 if self.config.cuda:
                     images = images.cuda()
-                print(images.size())
+                # print(images.size())
                 time_start = time.time()
                 up_edge, up_sal, up_sal_f = self.net_bone(images)
                 torch.cuda.synchronize()
                 time_end = time.time()
-                print(time_end - time_start)
+                # print(time_end - time_start)
                 time_t = time_t + time_end - time_start                              
                 pred = np.squeeze(torch.sigmoid(up_sal_f[-1]).cpu().data.numpy())             
                 multi_fuse = 255 * pred
                 
 
-                
-                cv2.imwrite(os.path.join(self.config.test_fold,name_t, name[:-4] + '.png'), multi_fuse)
+                filename = os.path.join(self.config.test_fold,name.split('/')[-1][:-4] + '.png')
+                cv2.imwrite(filename, multi_fuse)
           
         print("--- %s seconds ---" % (time_t))
         print('Test Done!')
