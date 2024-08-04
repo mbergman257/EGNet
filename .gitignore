@@ -1,1 +1,3 @@
 *.pth
+*.lst
+__pycache__*
