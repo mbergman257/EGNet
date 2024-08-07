@@ -3,14 +3,17 @@ EGNet:Edge Guidance Network for Salient Object Detection (ICCV 2019)
 
 We use the sal2edge.m to generate the edge label for training.
 ### Modified for use on coco (Aug 2024)
-1. Download pretrained models from google drive `epoch_resnet.pth` & `epoch_vgg.pth`
+1. This repo must have the same parent as the YOLOv8 repo, for it to automatically find the correct files. 
+By default it will find COCO files created by the YOLOv8 download script.
 
-2. Change paths
+2. Download pretrained models from google drive `epoch_resnet.pth` & `epoch_vgg.pth` and extract to this repo.
 
 3. Generate .lst files for both train and val sets
         `python3 generate_lst.py`
 4. Run
-        `python3 run.py`
+        `python3 run.py --sal_mode=c` for train2017 set and `python3 run.py --sal_mode=v` for val2017 set
+
+This may take approx. 2 hours for the entire COCO 2017 dataset
 
 ### For training:
 1. Clone this code by `git clone https://github.com/JXingZhao/EGNet.git --recursive`, assume your source code directory is`$EGNet`;

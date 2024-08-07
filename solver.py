@@ -103,10 +103,9 @@ class Solver(object):
         EPSILON = 1e-8
         img_num = len(self.test_loader)
         time_t = 0.0
-        name_t = 'EGNet_ResNet50/'
 
-        if not os.path.exists(os.path.join(self.save_fold, name_t)):             
-            os.mkdir(os.path.join(self.save_fold, name_t))
+        if not os.path.exists(self.save_fold):             
+            os.makedirs(self.save_fold)
         for i, data_batch in tqdm(enumerate(self.test_loader), total=len(self.test_loader)):
             self.config.test_fold = self.save_fold
             # print(self.config.test_fold)

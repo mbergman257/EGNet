@@ -1,6 +1,6 @@
 import argparse
 import os
-from dataset import get_loader
+from dataset import get_loader, ROOT
 from solver import Solver
 
 
@@ -27,8 +27,8 @@ def main(config):
 
 if __name__ == '__main__':
 
-    vgg_path = '/home/ridley/git_repos/EGNet/epoch_vgg.pth'
-    resnet_path = '/home/ridley/git_repos/EGNet/epoch_resnet.pth'
+    vgg_path = ROOT + '/EGNet/epoch_vgg.pth'
+    resnet_path = ROOT + '/EGNet/epoch_resnet.pth'
 
     parser = argparse.ArgumentParser()
 

@@ -1,4 +1,5 @@
 import os
+from dataset import ROOT
 
 def generate_lst_file(image_dir, lst_filename):
     """
@@ -24,6 +25,11 @@ def generate_lst_file(image_dir, lst_filename):
     print(f"{lst_filename} has been generated with {len(image_files)} entries.")
 
 # Example usage
-image_directory = '/home/ridley/git_repos/yolov8/datasets/coco/images/val2017'
-output_lst_file = '/home/ridley/git_repos/EGNet/coco_val2017.lst'
+# Train
+image_directory = ROOT + '/yolov8/datasets/coco/images/train2017'
+output_lst_file = ROOT + '/EGNet/coco_train2017.lst'
+generate_lst_file(image_directory, output_lst_file)
+# Val
+image_directory = ROOT + '/yolov8/datasets/coco/images/val2017'
+output_lst_file = ROOT + '/EGNet/coco_val2017.lst'
 generate_lst_file(image_directory, output_lst_file)

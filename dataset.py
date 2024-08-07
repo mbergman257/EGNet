@@ -9,6 +9,7 @@ import numbers
 import numpy as np
 import random
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #re_size = (256, 256)
 #cr_size = (224, 224)
 
@@ -84,9 +85,14 @@ class ImageDataTest(data.Dataset):
                 self.image_source = '/home/liuj/dataset/DUTS/DUTS-TE/test.lst'
                 self.test_fold = '/media/ubuntu/disk/Result/saliency/DUTS/'
             elif sal_mode == 'c':
-                self.image_root = '/home/ridley/git_repos/yolov8/datasets/coco/images/train2017'
-                self.image_source = '/home/ridley/git_repos/EGNet/coco_train2017.lst'
-                self.test_fold = '/home/ridley/git_repos/yolov8/datasets/coco/sal/train2017'
+                self.image_root = ROOT + '/yolov8/datasets/coco/images/train2017'
+                self.image_source = ROOT + '/EGNet/coco_train2017.lst'
+                self.test_fold = ROOT + '/yolov8/datasets/coco/sal/train2017'
+            elif sal_mode == 'v':
+                self.image_root = ROOT + '/yolov8/datasets/coco/images/val2017'
+                self.image_source = ROOT + '/EGNet/coco_val2017.lst'
+                self.test_fold = ROOT + '/yolov8/datasets/coco/sal/val2017'
+        
         elif test_mode == 2:
 
             self.image_root = '/home/liuj/dataset/SK-LARGE/images/test/'
